@@ -19,7 +19,7 @@ from pyrogram.types import (
 from pyrogram.errors import (
     MessageNotModified
 )
-from core.search_video import search_pdisk_videos
+from core.search_video import videos
 
 if os.path.exists("configs.env"):
     load_dotenv("configs.env")
@@ -29,21 +29,21 @@ class Configs(object):
     API_ID = int(os.environ.get("API_ID", 0))
     API_HASH = os.environ.get("API_HASH", "")
     BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
-    PDISK_USERNAME = os.environ.get("PDISK_USERNAME", "")
-    PDISK_PASSWORD = os.environ.get("PDISK_PASSWORD", "")
+    DROPLINK_USERNAME = os.environ.get("DROPLINK_USERNAME", "")
+    DROPLINK_PASSWORD = os.environ.get("DROPLINK_PASSWORD", "")
     MAX_RESULTS = int(os.environ.get("MAX_RESULTS", 5))
     AUTH_CHATS = list(set(int(x) for x in os.environ.get("AUTH_CHATS", "0").split()))
     # Which PDisk Domain?
     PDISK_DOMAINS = [
-        "https://www.cdink.net/",
-        "https://www.cofilink.com/",
-        "https://www.pdisk1.net/",
-        "https://www.pdisk.net/"
+        "https://www.droplink.co/"
+       
+ 
+
     ]
-    PDISK_DOMAIN = os.environ.get("PDISK_DOMAIN", PDISK_DOMAINS[2])
+    PDISK_DOMAIN = os.environ.get("DROPLINK_DOMAIN", DROPLINK_DOMAINS[2])
 
 
-PDiskBot = Client(
+droplinkBot = Client(
     session_name=":memory:",
     api_id=Configs.API_ID,
     api_hash=Configs.API_HASH,
@@ -87,7 +87,7 @@ async def text_handler(_, m: Message):
             count += 1
             text += f"**Title:** `{data[i]['title']}`\n" \
                     f"**Description:** `{data[i]['description']}`\n" \
-                    f"**PDisk Link:** {Configs.PDISK_DOMAIN + 'share-video?videoid=' + data[i]['share_link'].split('=', 1)[-1]}\n\n"
+                    f"**DROPLINK Link:** {Configs.DROPLINK_DOMAIN + 'share-video?videoid=' + data[i]['share_link'].split('=', 1)[-1]}\n\n"
         try: await editable.edit(text, disable_web_page_preview=True)
         except MessageNotModified: pass
 
