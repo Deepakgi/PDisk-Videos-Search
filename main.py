@@ -96,7 +96,7 @@ async def run():
     await PDiskBot.start()
     print("\n\nBot Started!\n\n")
     await idle()
-    await PDiskBot.stop()
+    await droplinkot.stop()
     print("\n\nBot Stopped!\n\n")
 
 
