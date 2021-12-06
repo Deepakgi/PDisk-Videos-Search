@@ -66,7 +66,7 @@ async def text_handler(_, m: Message):
     if len(m.command) < 2:
         return await m.reply_text("Search Query Missing!")
     editable = await m.reply_text("Please Wait ...", quote=True)
-    response = await search_pdisk_videos(m.text.split(" ", 1)[-1], Configs.PDISK_USERNAME, Configs.PDISK_PASSWORD)
+    response = await videos(m.text.split(" ", 1)[-1], Configs.DROPLINK_USERNAME, Configs.PDISK_PASSWORD)
     if isinstance(response, Exception):
         traceback.print_exc()
         try: await editable.edit("Failed to search!",
