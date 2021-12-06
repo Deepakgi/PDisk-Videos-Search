@@ -21,7 +21,7 @@ async def droplink_login(username: str, password: str):
     options.add_argument("--disable-gpu")
     options.add_argument("--disable-infobars")
     driver = webdriver.Chrome(options=options)
-    print("Trying to Login to PDisk Account ...")
+    print("Trying to Login to droplink Account ...")
     driver.get(login_url)
     print("Adding Username in Box ...")
     driver.find_element_by_xpath("//input[@placeholder='Username/Email']").send_keys(username)
