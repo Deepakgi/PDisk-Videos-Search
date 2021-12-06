@@ -10,10 +10,10 @@ from selenium.common.exceptions import (
 )
 
 
-async def pdisk_login(username: str, password: str):
+async def droplink_login(username: str, password: str):
     print("Bot on Standby ...")
-    login_url = "https://www.pdisk.net/login?type=login"
-    get_id_page_url = "https://www.pdisk.net/withdraw"
+    login_url = "https://droplink.co/auth/signin"
+    get_id_page_url = "https://droplink.co/member/withdraws"
     options = webdriver.ChromeOptions()
     options.add_argument("--headless")
     options.add_argument("--disable-dev-shm-usage")
@@ -53,10 +53,10 @@ async def pdisk_login(username: str, password: str):
             user_id = driver.find_element_by_class_name("account-id").text.split(' ', 1)[-1]
         except NoSuchElementException:
             user_id = None
-        print(f"PDisk User ID: '{user_id}'")
+        print(f"droplink User ID: '{user_id}'")
         ## --- Collect Cookies --- ##
         cookies = ""
-        cookie_names = ["lang", "user_uid", "uid", "EGG_SESS", "csrfToken", "pdisksid"]
+        cookie_names = ["lang", "user_uid", "uid", "EGG_SESS", "csrfToken", "droplinkid"]
         for cookie in range(len(cookie_names)):
             cookies += f"{cookie_names[cookie]}={driver.get_cookie(cookie_names[cookie])['value']}; "
         driver.quit()
